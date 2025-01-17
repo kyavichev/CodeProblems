@@ -32,12 +32,44 @@ Constraints:
     0 <= ratings[i] <= 2 * 104
 */
 
+using System;
 
-public class Candy
+
+public class CandySolution
 {
-    public int GetCandyCount(int[] children)
+    public int Candy(int[] ratings)
     {
-        int x = 5;
-        return x;
+        int[] right = new int[ratings.Length];
+        int[] left = new int[ratings.Length];
+
+        for (int i = 0; i < ratings.Length; i++)
+        {
+            right[i] = 1;
+            left[i] = 1;
+        }
+
+        for (int i = 1; i < ratings.Length; i++)
+        {
+            if (ratings[i] > ratings[i - 1])
+            {
+                left[i] = left[i - 1] + 1;
+            }
+        }
+
+        for (int i = ratings.Length - 2; i >= 0; i--)
+        {
+            if (ratings[i] > ratings[i + 1])
+            {
+                right[i] = right[i + 1] + 1;
+            }
+        }
+
+        int candyCount = 0;
+        for (int i = 0; i < ratings.Length; i++)
+        {
+            candyCount += Math.Max(left[i], right[i]);
+        }
+
+        return candyCount;
     }
 }
