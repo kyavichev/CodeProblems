@@ -21,4 +21,28 @@ public static class InputStringParser
 
         return array.ToArray();
     }
+
+    public static int[][] ParseArrayOfIntArray(string input)
+    {
+        List<int[]> result = new List<int[]>();
+
+        if (input[0] == '[' && input[^1] == ']')
+        {
+            string dataString = input.Substring(2, input.Length - 4);
+            string[] arrayStrings = dataString.Split("],[");
+
+            foreach(var arrayString in arrayStrings)
+            {
+                string[] stringNumbers = arrayString.Split(',');
+                List<int> list = new List<int>();
+                foreach (string number in stringNumbers)
+                {
+                    list.Add(int.Parse(number));
+                }
+                result.Add(list.ToArray());
+            }
+        }
+
+        return result.ToArray();
+    }
 }
