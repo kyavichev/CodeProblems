@@ -43,7 +43,44 @@ public static class FindMinArrowShotsSolution
 {
     public static int FindMinArrowShots(int[][] points)
     {
-        QuickSort.Sort(points, (int[] a, int[] b) => { return a[0].CompareTo(b[0]); });
+        QuickSort.Sort(points, (int[] a, int[] b) => a[^1].CompareTo(b[^1]));
+
+        int arrowCount = 0;
+
+        // Use a "lastArrowPosition" variable to track the position of the last arrow.
+        // Initialize to a very small value to ensure it is less than the start of any interval.
+        int lastArrowPosition = -1;
+
+        // Iterate through each interval in the sorted array.
+        for (int a = 0; a < points.Length; a++)
+        {
+            int[] interval = points[a];
+            int start = interval[0]; // Start of the current interval
+            int end = interval[1];   // End of the current interval
+
+            // If the start of the current interval is greater than the "lastArrowPosition",
+            // it means a new arrow is needed for this interval.
+            if (start > lastArrowPosition)
+            {
+                arrowCount++;  // Increment the number of arrows needed.
+                lastArrowPosition = end;  // Update the position of the last arrow.
+            }
+        }
+
+        return arrowCount;
+    }
+
+    public static int FindMinArrowShots2(int[][] points)
+    {
+        QuickSort.Sort(points, (int[] a, int[] b) =>
+        {
+            int retval = a[0].CompareTo(b[0]);
+            if( retval == 0)
+            {
+                return a[^1].CompareTo(b[^1]);
+            }
+            return retval;
+        });
 
         int arrowCount = 0;
 
@@ -52,12 +89,32 @@ public static class FindMinArrowShotsSolution
         {
             arrowCount++;
             var first = points[a];
+            int shotValue = first[^1];
             if (a < points.Length - 1)
             {
-                var second = points[a + 1];
-                if (first[^1] >= second[0])
+                var next = points[a + 1];
+                while (first[^1] >= next[0])
                 {
+                    if(shotValue > next[^1])
+                    {
+                        shotValue = next[^1];
+                    }
+
+                    if(shotValue < next[0])
+                    {
+                        break;
+                    }
+
                     a++;
+
+                    if (a < points.Length - 1)
+                    {
+                        next = points[a + 1];
+                    }
+                    else
+                    {
+                        break;
+                    }
                 }
             }
         }
