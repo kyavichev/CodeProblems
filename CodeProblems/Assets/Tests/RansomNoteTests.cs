@@ -1,40 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using NUnit.Framework;
-using UnityEngine;
 
 
 public class RansomNoteTests
 {
-    public class TestData
-    {
-        public string ransomNote;
-        public string magazine;
-        public bool isPossible;
-
-        public TestData(string aRansomNote, string aMagazine, bool aIsPossible)
-        {
-            ransomNote = aRansomNote;
-            magazine = aMagazine;
-            isPossible = aIsPossible;
-        }
-    }
-
-
+    [TestCase("a", "b", false)]
+    [TestCase("aa", "ab", false)]
+    [TestCase("aa", "aab", true)]
+    [TestCase("aace", "aabcdeee", true)]
     [Test]
-    public void TestRandomNote()
+    public void TestRandomNote(string ransomNote, string magazine, bool expectedResult)
     {
-        List<TestData> inputData = new List<TestData>()
-        {
-            new TestData("a", "b", false),
-            new TestData("aa", "ab", false),
-            new TestData("aa", "aab", true),
-            new TestData("aace", "aabcdeee", true),
-        };
-
-        foreach(var test in inputData)
-        {
-            Assert.AreEqual(RansomNoteSolution.CanConstruct(test.ransomNote, test.magazine), test.isPossible);
-        }
+        Assert.AreEqual(RansomNoteSolution.CanConstruct(ransomNote, magazine), expectedResult);
     }
 }
