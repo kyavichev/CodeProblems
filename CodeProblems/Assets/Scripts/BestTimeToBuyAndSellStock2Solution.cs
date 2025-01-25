@@ -33,9 +33,9 @@ Explanation: There is no way to make a positive profit, so we never buy the stoc
 using System;
 
 
-public class BestTimeToBuyAndSellStock2
+public static class BestTimeToBuyAndSellStock2Solution
 {
-    public int MaxProfit(int[] prices)
+    public static int MaxProfit(int[] prices)
     {
         int totalProfit = 0;
         int buyIndex = 0;

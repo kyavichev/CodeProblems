@@ -35,9 +35,9 @@ Constraints:
 using System;
 
 
-public class CandySolution
+public static class CandySolution
 {
-    public int Candy(int[] ratings)
+    public static int Candy(int[] ratings)
     {
         int[] right = new int[ratings.Length];
         int[] left = new int[ratings.Length];

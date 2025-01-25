@@ -25,9 +25,9 @@ Explanation: In this case, no transactions are done and the max profit = 0.
 using System;
 
 
-public class BestTimeToBuyAndSellStock
+public static class BestTimeToBuyAndSellStockSolution
 {
-    public int MaxProfit(int[] prices)
+    public static int MaxProfit(int[] prices)
     {
         int lowestPoint = 0;
         int highestPoint = 0;
