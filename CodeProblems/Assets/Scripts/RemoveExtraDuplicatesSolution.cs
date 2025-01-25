@@ -50,9 +50,9 @@ Constraints:
 */
 
 
-public class Solution
+public static class RemoveExtraDuplicatesSolution
 {
-    public int RemoveDuplicates(int[] nums)
+    public static int RemoveDuplicates(int[] nums)
     {
         int lastUniqueIndex = 0;
         int insertIndex = 1;
