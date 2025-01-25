@@ -8,7 +8,7 @@ public static class InputStringParser
     {
         List<int> array = new List<int>();
 
-        if(input[0] == '[' && input[^1] == ']')
+        if(input[0] == '[' && input[^1] == ']' && input.Length > 2)
         {
             string data = input.Substring(1, input.Length - 2);
             string[] stringNumbers = data.Split(',');
