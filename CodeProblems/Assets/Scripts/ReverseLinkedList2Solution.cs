@@ -12,7 +12,7 @@ public static class ReverseLinkedList2Solution
             return head;
         }
 
-        // Dummy node in case left is 1 and there is no nodes before
+        // Dummy node in case left is 1 and there are no nodes before
         ListNode tempHead = new ListNode(0, head);
 
         ListNode leftNode = tempHead;

@@ -45,4 +45,43 @@ public static class InputStringParser
 
         return result.ToArray();
     }
+
+    public static int?[] ParseNullableIntArray(string input)
+    {
+        List<int?> array = new List<int?>();
+
+        string dataString = input;
+        if (input[0] == '[' && input[^1] == ']')
+        {
+            dataString = input.Substring(1, input.Length - 2);
+        }
+
+        string[] stringNumbers = dataString.Split(',');
+
+        foreach (string number in stringNumbers)
+        {
+            if (number == "null")
+            {
+                array.Add(null);
+            }
+            else
+            {
+                array.Add(int.Parse(number));
+            }
+        }
+
+        return array.ToArray();
+    }
+
+    public static string[] ParseStringArray(string input)
+    {
+        string dataString = input;
+        if (input[0] == '[' && input[^1] == ']')
+        {
+            dataString = input.Substring(1, input.Length - 2);
+        }
+
+        string[] stringArray = dataString.Split(",");
+        return stringArray;
+    }
 }
